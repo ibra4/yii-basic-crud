@@ -1,11 +1,11 @@
 <?php
 
-use common\models\Make;
 use common\models\Post;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -21,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-
+    <?= $this->render('_search', ['model' => $filterModel]) ?>
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -29,23 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'status',
-            'make_id' => [
-                "value" => function (Post $model, $widget) {
-                    if ($model->make) {
-                        return Html::a($model->make->name, Url::toRoute(["makes/view", 'id' => $model->make->id]));
-                    }
-                },
-                "format" => "raw",
-                "label" => "Make"
+            [
+                "attribute" => 'make',
+                'value' => 'make.name'
             ],
-            'model_id' => [
-                "value" => function (Post $model, $widget) {
-                    if ($model->model) {
-                        return Html::a(Html::encode($model->model->name), Url::toRoute(["models/view", 'id' => $model->model->id]));
-                    }
-                },
-                "format" => "raw",
-                "label" => "Model"
+            [
+                "attribute" => 'model',
+                'value' => 'model.name'
             ],
             [
                 'class' => ActionColumn::className(),
@@ -55,6 +46,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
 
 </div>

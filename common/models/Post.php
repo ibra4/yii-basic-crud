@@ -21,6 +21,9 @@ use yii\behaviors\TimestampBehavior;
 class Post extends \yii\db\ActiveRecord
 {
 
+    public $start;
+    public $end;
+    
     public function behaviors()
     {
         return [
