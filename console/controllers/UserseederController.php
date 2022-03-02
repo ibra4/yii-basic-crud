@@ -3,9 +3,7 @@
 namespace console\controllers;
 
 use common\models\User;
-use Yii;
 use yii\console\Controller;
-use yii\helpers\Console;
 
 class UserseederController extends Controller
 {
