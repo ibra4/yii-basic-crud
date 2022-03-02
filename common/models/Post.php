@@ -2,8 +2,8 @@
 
 namespace common\models;
 
-use common\models\Traits\TimestampsTrait;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "post".
@@ -21,7 +21,12 @@ use Yii;
 class Post extends \yii\db\ActiveRecord
 {
 
-    use TimestampsTrait;
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
     
     /**
      * {@inheritdoc}

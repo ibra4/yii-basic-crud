@@ -2,8 +2,8 @@
 
 namespace common\models;
 
-use common\models\Traits\TimestampsTrait;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "model".
@@ -19,8 +19,13 @@ use Yii;
 class Model extends \yii\db\ActiveRecord
 {
 
-    use TimestampsTrait;
-    
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */

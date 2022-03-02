@@ -2,8 +2,10 @@
 
 namespace common\models;
 
+use common\models\Behaviors\AuthorBehavior;
 use Yii;
-use common\models\Traits\TimestampsTrait;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "make".
@@ -18,20 +20,16 @@ use common\models\Traits\TimestampsTrait;
  * @property User $author
  * @property Post[] $posts
  */
-class Make extends \yii\db\ActiveRecord
+class Make extends ActiveRecord
 {
-    public function beforeSave($insert)
+    public function behaviors()
     {
-        if ($insert) {
-            $this->created_at = time();
-            if (!Yii::$app instanceof Yii\console\Application) {
-                $this->author_id = \Yii::$app->user->identity->id;
-            }
-        } else {
-            $this->updated_at = time();
-        }
-        return parent::beforeSave($insert);
+        return [
+            TimestampBehavior::class,
+            AuthorBehavior::class,
+        ];
     }
+
     /**
      * {@inheritdoc}
      */
