@@ -5,7 +5,6 @@ namespace backend\controllers;
 use common\models\Post;
 use common\models\Search\PostSearch;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -51,22 +50,8 @@ class PostsController extends Controller
      */
     public function actionIndex()
     {
-        // $searchModel = new PostSearch();
-        // $searchProvider = $searchModel->search(Yii::$app->request->get());
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->get());
-
-        // $dataProvider = new ActiveDataProvider([
-        //     'query' => Post::find(),
-        //     'pagination' => [
-        //         'pageSize' => 50
-        //     ],
-        //     'sort' => [
-        //         'defaultOrder' => [
-        //             'id' => SORT_DESC,
-        //         ]
-        //     ],
-        // ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

@@ -31,6 +31,14 @@ class PostSearch extends Post
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 2
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {
