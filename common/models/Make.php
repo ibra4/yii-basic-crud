@@ -24,7 +24,9 @@ class Make extends \yii\db\ActiveRecord
     {
         if ($insert) {
             $this->created_at = time();
-            $this->author_id = \Yii::$app->user->identity->id;
+            if (!Yii::$app instanceof Yii\console\Application) {
+                $this->author_id = \Yii::$app->user->identity->id;
+            }
         } else {
             $this->updated_at = time();
         }

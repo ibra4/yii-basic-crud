@@ -15,11 +15,10 @@ class MakeseederController extends Controller
         $makes = [1, 2, 3];
         foreach ($makes as $model_idx) {
             $make = new Make();
-            $make->name = "model$model_idx";
+            $make->name = "Make $model_idx";
             $make->state = rand(1, 3);
-            $make->created_at = new Expression('NOW()');
-            $make->updated_at = new Expression('NOW()');
-            $make->author_id = 7;
+            $make->created_at = time();
+            $make->author_id = 1;
             $make->save();
         }
     }
