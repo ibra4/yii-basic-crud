@@ -2,7 +2,7 @@
 
 namespace console\controllers;
 
-use app\models\Model;
+use common\models\Model;
 use yii\console\Controller;
 use yii\db\Expression;
 

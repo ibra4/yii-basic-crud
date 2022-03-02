@@ -19,7 +19,7 @@ class UserseederController extends Controller
             if (!$exists) {
                 $user = new User();
                 $user->username = "user$user_idx";
-                $user->email = "user$user_idx@gmail.com}";
+                $user->email = "user$user_idx@gmail.com";
                 $user->status = User::STATUS_ACTIVE;
                 $user->setPassword("12345678");
                 $user->generateAuthKey();

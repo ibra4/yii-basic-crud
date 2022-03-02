@@ -1,7 +1,8 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
+use common\models\Traits\TimestampsTrait;
 use Yii;
 
 /**
@@ -10,11 +11,16 @@ use Yii;
  * @property int $id
  * @property string|null $name
  * @property int|null $make_id
+ * @property string|null $created_at
+ * @property string|null $updated_at
  *
  * @property Post[] $posts
  */
 class Model extends \yii\db\ActiveRecord
 {
+
+    use TimestampsTrait;
+    
     /**
      * {@inheritdoc}
      */
@@ -30,6 +36,7 @@ class Model extends \yii\db\ActiveRecord
     {
         return [
             [['make_id'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -42,7 +49,9 @@ class Model extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'make_id' => 'Make ID',
+            'make_id' => 'Make',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
         ];
     }
 
@@ -54,5 +63,15 @@ class Model extends \yii\db\ActiveRecord
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['model_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Posts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMake()
+    {
+        return $this->hasOne(Make::className(), ['id' => 'make_id']);
     }
 }

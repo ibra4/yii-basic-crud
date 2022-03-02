@@ -1,7 +1,8 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
+use common\models\Traits\TimestampsTrait;
 use Yii;
 
 /**
@@ -11,12 +12,17 @@ use Yii;
  * @property int|null $status
  * @property int $model_id
  * @property int $make_id
+ * @property string|null $created_at
+ * @property string|null $updated_at
  *
  * @property Make $make
  * @property Model $model
  */
 class Post extends \yii\db\ActiveRecord
 {
+
+    use TimestampsTrait;
+    
     /**
      * {@inheritdoc}
      */
@@ -32,6 +38,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['status', 'model_id', 'make_id'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['model_id', 'make_id'], 'required'],
             [['make_id'], 'exist', 'skipOnError' => true, 'targetClass' => Make::className(), 'targetAttribute' => ['make_id' => 'id']],
             [['model_id'], 'exist', 'skipOnError' => true, 'targetClass' => Model::className(), 'targetAttribute' => ['model_id' => 'id']],
@@ -46,8 +53,10 @@ class Post extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'status' => 'Status',
-            'model_id' => 'Model ID',
-            'make_id' => 'Make ID',
+            'model_id' => 'Model',
+            'make_id' => 'Make',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
         ];
     }
 

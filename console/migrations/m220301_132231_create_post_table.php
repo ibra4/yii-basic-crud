@@ -17,6 +17,8 @@ class m220301_132231_create_post_table extends Migration
             'status' => $this->integer(),
             'model_id' => $this->integer()->notNull(),
             'make_id' => $this->integer()->notNull(),
+            'updated_at' => $this->integer(),
+            'created_at' => $this->integer()->notNull(),
         ]);
 
         $this->addForeignKey(

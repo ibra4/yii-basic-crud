@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
-use common\models\User;
 use Yii;
+use common\models\Traits\TimestampsTrait;
 
 /**
  * This is the model class for table "make".
@@ -11,8 +11,8 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property int|null $state
- * @property string|null $record_inset_date
- * @property string|null $record_update_date
+ * @property string|null $created_at
+ * @property string|null $updated_at
  * @property int $author_id
  *
  * @property User $author
@@ -20,6 +20,16 @@ use Yii;
  */
 class Make extends \yii\db\ActiveRecord
 {
+    public function beforeSave($insert)
+    {
+        if ($insert) {
+            $this->created_at = time();
+            $this->author_id = \Yii::$app->user->identity->id;
+        } else {
+            $this->updated_at = time();
+        }
+        return parent::beforeSave($insert);
+    }
     /**
      * {@inheritdoc}
      */
@@ -34,9 +44,9 @@ class Make extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'author_id'], 'required'],
+            [['name'], 'required'],
             [['state', 'author_id'], 'integer'],
-            [['record_inset_date', 'record_update_date'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
         ];
@@ -51,8 +61,8 @@ class Make extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'state' => 'State',
-            'record_inset_date' => 'Record Inset Date',
-            'record_update_date' => 'Record Update Date',
+            'created_at' => 'Created at',
+            'updated_at' => 'Updated at',
             'author_id' => 'Author ID',
         ];
     }

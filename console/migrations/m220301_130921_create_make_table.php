@@ -16,8 +16,8 @@ class m220301_130921_create_make_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
             'state' => $this->integer(),
-            'record_inset_date' => $this->timestamp(),
-            'record_update_date' => $this->timestamp(),
+            'updated_at' => $this->integer(),
+            'created_at' => $this->integer()->notNull(),
             'author_id' => $this->integer()->notNull(),
         ]);
         $this->addForeignKey(
