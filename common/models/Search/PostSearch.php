@@ -40,9 +40,13 @@ class PostSearch extends Post
         $query->andFilterWhere(['id' => $this->id]);
         $query->andFilterWhere(['status' => $this->status])
             ->andFilterWhere(['model.id' => $this->model_id])
-            ->andFilterWhere(['make.id' => $this->make_id])
-            ->andFilterWhere(['>=', 'post.created_at', strtotime($this->start)])
-            ->andFilterWhere(['<=', 'post.created_at', strtotime($this->end)]);
+            ->andFilterWhere(['make.id' => $this->make_id]);
+        if ($this->start) {
+            $query->andFilterWhere(['>=', 'post.created_at', strtotime($this->start)]);
+        }
+        if ($this->end) {
+            $query->andFilterWhere(['<=', 'post.created_at', strtotime($this->end)]);
+        }
 
         return $dataProvider;
     }
