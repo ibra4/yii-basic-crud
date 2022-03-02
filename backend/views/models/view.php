@@ -40,14 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 "label" => "Make"
             ],
-            [
-                'attribute' => 'created_at',
-                'format' => ['datetime', 'dd/mm/Y - H:i a']
-            ],
-            [
-                'attribute' => 'updated_at',
-                'format' => ['datetime', 'dd/mm/Y - H:i a']
-            ],
+            'created_at:date',
+            'updated_at:date'
         ],
     ]) ?>
 

@@ -39,14 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 "format" => "raw",
                 "label" => "Make"
             ],
-            [
-                'attribute' => 'created_at',
-                'format' => ['datetime', 'dd/mm/Y - H:i a']
-            ],
-            [
-                'attribute' => 'updated_at',
-                'format' => ['datetime', 'dd/mm/Y - H:i a']
-            ],
+            'created_at:date',
+            'updated_at:date',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Model $model, $key, $index, $column) {

@@ -18,24 +18,21 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <?= $form->field($model, 'model_id')->dropDownList(
                 ArrayHelper::map(Model::find()->all(), 'id', 'name'),
                 ['prompt' => '- Select -']
             ) ?>
 
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <?= $form->field($model, 'make_id')->dropDownList(
                 ArrayHelper::map(Make::find()->all(), 'id', 'name'),
                 ['prompt' => '- Select -']
             ) ?>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <?= $form->field($model, 'status') ?>
-        </div>
-        <div class="col-md-6 mb-3">
-            <?= $form->field($model, 'created_at') ?>
         </div>
         <div class="col-md-6 mb-4">
             <?= $form->field($model, 'start')->textInput(["type" => 'date']) ?>
@@ -50,7 +47,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::submitButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Reset', '/posts', ['class' => 'btn btn-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

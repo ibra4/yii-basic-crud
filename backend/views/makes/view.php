@@ -33,14 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'state',
             'author_id',
-            [
-                'attribute' => 'created_at',
-                'format' => ['datetime', 'dd/mm/Y - H:i a']
-            ],
-            [
-                'attribute' => 'updated_at',
-                'format' => ['datetime', 'dd/mm/Y - H:i a']
-            ],
+            created_at:date
+            'updated_at:date'
         ],
     ]) ?>
 
