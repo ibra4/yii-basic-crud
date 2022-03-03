@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\grid\SerialColumn;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,7 +23,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?= $this->render('_search', ['model' => $filterModel]) ?>
-    
+
+    <?= ExportMenu::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => SerialColumn::class],
+
+            'id',
+            'status',
+            [
+                "attribute" => 'make',
+                'value' => 'make.name'
+            ],
+            [
+                "attribute" => 'model',
+                'value' => 'model.name'
+            ],
+            'created_at:date',
+            'updated_at:date',
+        ],
+        'clearBuffers' => true, //optional
+    ]);
+    ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -44,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Post $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
