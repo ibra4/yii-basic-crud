@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $model->model->name;
                     }
                 },
-                "label" => "Make"
+                "label" => "Model"
             ],
             'make_id' => [
                 "value" => function (Post $model, $widget) {

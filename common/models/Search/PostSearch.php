@@ -46,7 +46,7 @@ class PostSearch extends Post
         }
 
         $query->andFilterWhere(['id' => $this->id]);
-        $query->andFilterWhere(['status' => $this->status])
+        $query->andFilterWhere(['post.status' => $this->status])
             ->andFilterWhere(['model.id' => $this->model_id])
             ->andFilterWhere(['make.id' => $this->make_id]);
         if ($this->start) {

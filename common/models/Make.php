@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
  *
  * @property int $id
  * @property string $name
- * @property int|null $state
+ * @property int|null $status
  * @property string|null $created_at
  * @property string|null $updated_at
  * @property int $author_id
@@ -45,7 +45,7 @@ class Make extends ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['state', 'author_id'], 'integer'],
+            [['status', 'author_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
@@ -60,7 +60,7 @@ class Make extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'state' => 'State',
+            'status' => 'Status',
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
             'author_id' => 'Author ID',

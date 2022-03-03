@@ -9,6 +9,7 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "model".
  *
  * @property int $id
+ * @property int|null $status
  * @property string|null $name
  * @property int|null $make_id
  * @property string|null $created_at
@@ -40,7 +41,7 @@ class Model extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['make_id'], 'integer'],
+            [['status', 'make_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -53,6 +54,7 @@ class Model extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'status' => 'Status',
             'name' => 'Name',
             'make_id' => 'Make',
             'created_at' => 'Created at',
