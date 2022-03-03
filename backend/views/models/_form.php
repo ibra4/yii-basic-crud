@@ -15,6 +15,8 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'status')->textInput(['type' => 'number']) ?>
 
     <?= $form->field($model, 'make_id')->dropDownList(
         ArrayHelper::map(Make::find()->all(), 'id', 'name'),

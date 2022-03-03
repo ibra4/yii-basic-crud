@@ -49,10 +49,10 @@ class Post extends \yii\db\ActiveRecord
             [['status', 'model_id', 'make_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['model_id', 'make_id'], 'required'],
-            [['make_id'], 'exist', 'skipOnError' => true, 'targetClass' => Make::className(), 'targetAttribute' => ['make_id' => 'id']],
-            [['make_id'], StatusValidator::class, 'modelType' => Make::class],
-            [['model_id'], 'exist', 'skipOnError' => true, 'targetClass' => Model::className(), 'targetAttribute' => ['model_id' => 'id']],
-            [['model_id'], StatusValidator::class, 'modelType' => Model::class],
+            [['make_id'], 'exist', 'skipOnError' => true, 'targetClass' => Make::class, 'targetAttribute' => ['make_id' => 'id']],
+            [['make_id'], StatusValidator::class, 'modelType' => Make::class, 'on' => 'create'],
+            [['model_id'], 'exist', 'skipOnError' => true, 'targetClass' => Model::class, 'targetAttribute' => ['model_id' => 'id']],
+            [['model_id'], StatusValidator::class, 'modelType' => Model::class, 'on' => 'create'],
         ];
     }
 
