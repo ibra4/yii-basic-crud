@@ -1,6 +1,6 @@
 <?php
 
-namespace console\controllers;
+namespace console\controllers\seeders;
 
 use common\models\User;
 use yii\console\Controller;
