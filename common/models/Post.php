@@ -24,6 +24,9 @@ class Post extends \yii\db\ActiveRecord
 
     public $start;
     public $end;
+
+    const STATUS_INACTIVE = 0;
+    const STATUS_PUBLISHED = 1;
     
     public function behaviors()
     {
