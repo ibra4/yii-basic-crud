@@ -40,13 +40,13 @@ class Post extends \yii\db\ActiveRecord
                 ]));
             }
         }
-        
+
         parent::afterSave($insert, $changedAttributes);
     }
-    
-    public function beforeSave($insert) {
-        $this->document = $this->generatePdf();
-        Yii::$app->pdfGenerator->generatePostPdf($this);
+
+    public function beforeSave($insert)
+    {
+        $this->document = Yii::$app->pdfGenerator->generatePostPdf($this);
         return parent::beforeSave($insert);
     }
 
@@ -115,28 +115,5 @@ class Post extends \yii\db\ActiveRecord
     public function getModel()
     {
         return $this->hasOne(Model::className(), ['id' => 'model_id']);
-    }
-
-    private function generatePdf()
-    {
-        $content = Yii::$app->controller->renderPartial("pdf", [
-            'model' => $this
-        ]);
-        $pdf = new Pdf([
-            'mode' => Pdf::MODE_CORE,
-            'format' => Pdf::FORMAT_A4,
-            'orientation' => Pdf::ORIENT_PORTRAIT,
-            'destination' => Pdf::DEST_FILE,
-            'content' => $content,
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
-            'options' => ['title' => $this->title],
-            'methods' => [
-                'SetHeader' => ['Syarah - Car Details'],
-                'SetFooter' => ['{PAGENO}'],
-            ]
-        ]);
-        $pdf->filename = "uploads/car-$this->id.pdf";
-        $pdf->render();
-        return $pdf->filename;
     }
 }

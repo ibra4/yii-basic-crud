@@ -13,7 +13,6 @@ class SendPostEmail extends BaseObject implements \yii\queue\JobInterface
 
     public function execute($queue)
     {
-        $test = "";
         \Yii::$app->mailer->compose()
             ->setFrom(self::FROM)
             // Admin email
