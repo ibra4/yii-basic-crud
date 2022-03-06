@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\Post;
 use common\models\Search\PostSearch;
 use common\queue\SendPostEmail;
+use kartik\mpdf\Pdf;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -28,7 +29,7 @@ class PostsController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'pdf'],
                             'allow' => true,
                             'roles' => ['@'],
                         ],
@@ -107,8 +108,10 @@ class PostsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

@@ -33,6 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'status',
+            'document' => [
+                'attribute' => 'document',
+                'format' => 'raw',
+                'value' => function (Post $model) {
+                    return $model->document ? Html::a('Download', "/$model->document", ['class' => 'btn btn-primary', 'target' => '_blank'])
+                        : '<p class="text-danger">Document have not gneerated yet, save it to generate a PDF File</p>';
+                }
+            ],
             'model_id' => [
                 "value" => function (Post $model, $widget) {
                     if ($model->model) {

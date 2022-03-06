@@ -22,6 +22,9 @@ return [
                 'encryption' => 'tls',
             ],
         ],
+        'pdfGenerator' => [
+            'class' => 'common\components\PdfGenerator'
+        ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             // Disable index.php

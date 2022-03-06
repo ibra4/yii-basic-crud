@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49df7197ca41ffac33b1cce1a41c6760",
+    "content-hash": "47ec6d253bf066c69db1751b2dd6025e",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -767,21 +767,22 @@
         },
         {
             "name": "kartik-v/yii2-mpdf",
-            "version": "v1.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-mpdf.git",
-                "reference": "7ea3a5f9bcf5bcf6d681bd82cbe843c356d1428c"
+                "reference": "2679af91552c1919e10ac13fbb1f3b3eea02bbb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-mpdf/zipball/7ea3a5f9bcf5bcf6d681bd82cbe843c356d1428c",
-                "reference": "7ea3a5f9bcf5bcf6d681bd82cbe843c356d1428c",
+                "url": "https://api.github.com/repos/kartik-v/yii2-mpdf/zipball/2679af91552c1919e10ac13fbb1f3b3eea02bbb5",
+                "reference": "2679af91552c1919e10ac13fbb1f3b3eea02bbb5",
                 "shasum": ""
             },
             "require": {
                 "mpdf/mpdf": "~8.0"
             },
+            "default-branch": true,
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
@@ -825,7 +826,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-04-14T08:55:18+00:00"
+            "time": "2021-08-17T06:17:50+00:00"
         },
         {
             "name": "kartik-v/yii2-sortable",
@@ -6962,7 +6963,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/yii2-export": 20
+        "kartik-v/yii2-export": 20,
+        "kartik-v/yii2-mpdf": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
