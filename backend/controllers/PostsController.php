@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\Post;
 use common\models\Search\PostSearch;
+use common\queue\SendPostEmail;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -105,8 +106,26 @@ class PostsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $old_status = $model->status;
+        
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            $new_status = Yii::$app->request->post()["Post"]['status'];
+
+            if ($new_status == '0' && $old_status == '1') {
+                Yii::$app->queue->push(new SendPostEmail([
+                    'post_title' => $model->title,
+                    'post_id' => $model->id,
+                ]));
+                // \Yii::$app->mailer->compose()
+                // ->setFrom('i.hammad@syarah.com')
+                // // Admin email
+                // ->setTo('ibra9959@hotmail.com')
+                // ->setSubject("$model->id Status changed!")
+                // ->setTextBody("$model->title Status changed!")
+                // ->setHtmlBody("The post <b>$model->title</b> with id <b>$model->id</b> status changed from Published to Inactive")
+                // ->send();
+            }
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
