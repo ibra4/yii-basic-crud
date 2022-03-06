@@ -44,5 +44,13 @@ return [
             'channel' => 'default', // Queue channel key
             'mutex' => \yii\mutex\MysqlMutex::class, // Mutex used to sync queries
         ],
+        'mongodb' => [
+            'class' => '\yii\mongodb\Connection',
+            'dsn' => 'mongodb://localhost:27017/yii2advanced',
+            'options' => [
+                "username" => "Username",
+                "password" => "Password"
+            ]
+        ],
     ],
 ];
