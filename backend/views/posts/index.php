@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => SerialColumn::class],
 
             'id',
+            'title',
             'status',
             [
                 "attribute" => 'make',
@@ -52,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => SerialColumn::class],
 
             'id',
+            'title',
             'status',
             [
                 "attribute" => 'make',

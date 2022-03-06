@@ -15,6 +15,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'title')->textInput() ?>
+
     <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'model_id')->dropDownList(
