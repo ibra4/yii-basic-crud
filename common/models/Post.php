@@ -3,6 +3,7 @@
 namespace common\models;
 
 use common\models\Validators\StatusValidator;
+use common\queue\SendPostEmail;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -27,7 +28,21 @@ class Post extends \yii\db\ActiveRecord
 
     const STATUS_INACTIVE = 0;
     const STATUS_PUBLISHED = 1;
-    
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!$insert) {
+            if ($this->status == '0' && $changedAttributes['status'] == '1') {
+                Yii::$app->queue->push(new SendPostEmail([
+                    'post_title' => $this->title,
+                    'post_id' => $this->id,
+                ]));
+            }
+        }
+
+        parent::afterSave($insert, $changedAttributes);
+    }
+
     public function behaviors()
     {
         return [
