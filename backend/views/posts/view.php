@@ -58,7 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 "label" => "Make"
             ],
             'created_at:date',
-            'updated_at:date'
+            'updated_at:date',
+            [
+                'label' => "Number of views",
+                'value' => $num_of_views
+            ]
         ],
     ]) ?>
 

@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Post;
+use common\models\PostView;
 use common\models\Search\PostSearch;
 use Yii;
 use yii\filters\AccessControl;
@@ -27,7 +28,7 @@ class PostsController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'test'],
                             'allow' => true,
                             'roles' => ['@'],
                         ],
@@ -67,8 +68,12 @@ class PostsController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $this->postView($id);
+        $postView = PostView::find()->where(['_id' => $id])->one();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'num_of_views' => $postView->views
         ]);
     }
 
@@ -129,6 +134,20 @@ class PostsController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    private function postView($id)
+    {
+        $postView = PostView::find()->where(['_id' => $id])->one();
+        if ($postView === null) {
+            $postView = new PostView();
+            $postView->views = 1;
+            $postView->_id = $id;
+            $postView->save();
+        } else {
+            $postView->views += 1;
+            $postView->save();
+        }
     }
 
     /**
