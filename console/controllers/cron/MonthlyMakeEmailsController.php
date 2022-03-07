@@ -20,7 +20,7 @@ class MonthlyMakeEmailsController extends Controller
             ])
             ->from('make as m')
             ->join('LEFT JOIN', 'post as p', 'p.make_id=m.id')
-            ->where(['between', 'm.created_at', Carbon::now()->getTimestamp() - Carbon::now()->subMonths(1)->getTimestamp()])
+            ->where(['between', 'm.created_at', Carbon::now()->subMonths(1)->getTimestamp(), Carbon::now()->getTimestamp()])
             ->groupBy('m.id')
             ->all();
 
