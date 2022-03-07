@@ -2,6 +2,7 @@
 
 namespace console\controllers\cron;
 
+use Carbon\Carbon;
 use common\queue\SendMonthlyMakeReportEmail;
 use yii\console\Controller;
 
@@ -19,7 +20,7 @@ class MonthlyMakeEmailsController extends Controller
             ])
             ->from('make as m')
             ->join('LEFT JOIN', 'post as p', 'p.make_id=m.id')
-            ->where(['between', 'm.created_at', time() - (30 * 24 * 60 * 60), time()])
+            ->where(['between', 'm.created_at', Carbon::now()->getTimestamp() - Carbon::now()->subMonths(1)->getTimestamp()])
             ->groupBy('m.id')
             ->all();
 
