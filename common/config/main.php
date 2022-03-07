@@ -46,7 +46,7 @@ return [
         ],
         'mongodb' => [
             'class' => '\yii\mongodb\Connection',
-            'dsn' => 'mongodb://localhost:27017/yii2advanced',
+            'dsn' => 'mongodb://localhost:27017/yii2logs',
             'options' => [
                 "username" => "admin",
                 "password" => "admin"
