@@ -1,5 +1,7 @@
 <?php
 return [
+    'language' => 'ar-JO',
+    'sourceLanguage' => 'en-US',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -32,9 +34,9 @@ return [
             // Disable r= routes
             'enablePrettyUrl' => true,
             'rules' => array(
-                    '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ],
         'queue' => [
@@ -51,6 +53,14 @@ return [
                 "username" => "admin",
                 "password" => "admin"
             ]
+        ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@common/messages',
+                ],
+            ],
         ],
     ],
 ];

@@ -8,6 +8,7 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron text-center bg-transparent">
         <h1 class="display-4">Congratulations!</h1>
+        <h1 class="display-4"><?= Yii::t("app", 'welcome') ?></h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
